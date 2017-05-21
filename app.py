@@ -3,11 +3,11 @@ from datetime import datetime
 app = Flask(__name__)
 
 @app.route('/')
-def homepage():
+def fifteen():
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
     return """
-    <h1>Hello heroku</h1>
+    <h1>Hello World!</h1>
     <p>It is currently {time}.</p>
 
     <img src="http://loremflickr.com/600/400">
