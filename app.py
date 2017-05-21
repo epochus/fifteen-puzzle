@@ -1,17 +1,27 @@
-from flask import Flask
-from datetime import datetime
+from flask import Flask, render_template, request, json, jsonify
+from fifteen import FifteenSolver
+
 app = Flask(__name__)
+
 
 @app.route('/')
 def fifteen():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+    """Render Fifteen Puzzle view."""
+    return render_template("fifteen.html")
 
-    return """
-    <h1>Hello World!</h1>
-    <p>It is currently {time}.</p>
+@app.route('/solve')
+def solve():
+    response_data = {'result': []}
+    board_msg = request.args.get('board', None)
 
-    <img src="http://loremflickr.com/600/400">
-    """.format(time=the_time)
+    if board_msg:
+        board_arr = json.loads(board_msg)
+        solver = FifteenSolver(4, 4, board_arr)
+        move_str = solver.solve_puzzle();
+        response_data['result'] = list(move_str)
+
+    return jsonify(response_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)

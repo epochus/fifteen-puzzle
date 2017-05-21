@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jackson Wu's Personal Site">
+  <meta name="author" content="Jackson Wu">
+
+  <title>Fifteen</title>
+
+  <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fifteen.css') }}">
+</head>
+
+<body>
+  <main role="main">
+    <header>
+      <h1 class="center">15-Puzzle</h1>
+    </header>
+    
+    <canvas id="canvas" width=405 height=405>
+      This browser does not support the HTML5 canvas element.
+    </canvas>
+
+    <div class="row center">
+      <button class="btn btn-success btn-md" onclick="scramble()">Scramble</button>
+      <button class="btn btn-success btn-md" onclick="resetBoard()">Reset</button>
+      <form action="javascript:createPost()">
+        <button class="btn btn-success btn-md" type="submit">Solve</button>
+      </form>
+    </div>
+
+    <div class="container">
+    <div id="about">
+      <p><strong>How To Play:</strong> Use the arrow keys to move the empty space 
+        to the top left corner and place the rest of the numbers in ascending order
+        (<a href="https://en.wikipedia.org/wiki/15_puzzle" target="_blank">info</a>).</p>
+      <p>View the <a class="link"
+        href="https://github.com/epochus/fifteen-puzzle" target="_blank">source code</a>.</p>
+    </div>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" 
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" 
+    crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='fifteen.js') }}"></script>
+</body>
+</html>
